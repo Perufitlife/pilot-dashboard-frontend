@@ -1,0 +1,855 @@
+/* Profile.css - Estilo mejorado con enfoque en diseño de cockpit dashboard */
+
+/* Contenedor principal */
+.profile-container {
+  max-width: 100%;
+  padding: 20px;
+  font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  color: #333;
+}
+
+/* Barra superior */
+.profile-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.profile-edit-all-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #5e17eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.profile-edit-all-btn:hover {
+  background-color: #4c11c9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(94, 23, 235, 0.25);
+}
+
+/* Alertas y notificaciones */
+.profile-alert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.profile-alert p {
+  flex: 1;
+  margin: 0;
+}
+
+.profile-alert button {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.profile-alert.error {
+  background-color: #fef2f2;
+  color: #ef4444;
+  border-left: 4px solid #ef4444;
+}
+
+.profile-alert.success {
+  background-color: #f0fdf4;
+  color: #10b981;
+  border-left: 4px solid #10b981;
+}
+
+/* Contenedor principal de contenido */
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Grid principal para las tarjetas */
+.profile-main-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Tarjetas base */
+.profile-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.profile-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.profile-card-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile-card-edit-btn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.profile-card-edit-btn:hover {
+  background-color: #f1f5f9;
+  color: #5e17eb;
+}
+
+/* Tarjeta de Información Personal */
+.profile-personal {
+  grid-column: 1 / -1;
+}
+
+.profile-personal-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #5e17eb;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.profile-personal-info {
+  margin-left: 16px;
+}
+
+.profile-personal-info h3 {
+  margin: 0 0 4px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.profile-email {
+  margin: 0 0 8px 0;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.profile-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.profile-tag {
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.profile-tag.license {
+  background-color: #f0f9ff;
+  color: #0284c7;
+}
+
+.profile-tag.position {
+  background-color: #f0fdfa;
+  color: #0d9488;
+}
+
+.profile-tag.country {
+  background-color: #f5f3ff;
+  color: #7c3aed;
+}
+
+.profile-card .profile-card-header {
+  padding-bottom: 16px;
+}
+
+.profile-personal .profile-card-header {
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  border-bottom: none;
+}
+
+/* Sección de Horas de Vuelo */
+.profile-hours-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 20px;
+}
+
+.hours-stat {
+  text-align: center;
+  padding: 16px 12px;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hours-total {
+  background-color: #5e17eb;
+  color: white;
+  grid-column: span 3;
+}
+
+.hours-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.hours-total .hours-value {
+  font-size: 2rem;
+}
+
+.hours-label {
+  font-size: 0.85rem;
+  color: inherit;
+  opacity: 0.8;
+}
+
+/* Sección de Licencia */
+.profile-license-info {
+  padding: 20px;
+}
+
+.license-box {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.license-type {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #e2e8f0;
+  display: flex;
+  flex-direction: column;
+}
+
+.license-label {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 2px;
+}
+
+.license-value {
+  font-weight: 500;
+}
+
+.license-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.license-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sección de Posición */
+.profile-position-info {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.position-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5e17eb;
+}
+
+.position-details {
+  flex: 1;
+}
+
+.position-value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.position-location {
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Sección de Habilitaciones */
+.profile-ratings-display {
+  padding: 20px;
+}
+
+.ratings-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.rating-badge {
+  background-color: #f1f5f9;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.no-ratings-message {
+  text-align: center;
+  padding: 20px;
+  color: #64748b;
+}
+
+.add-first-rating-btn {
+  margin-top: 10px;
+  background: none;
+  border: 1px dashed #cbd5e1;
+  color: #5e17eb;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-first-rating-btn:hover {
+  background-color: #f8fafc;
+  border-color: #5e17eb;
+}
+
+/* Sección de Información Adicional */
+.profile-additional-info {
+  padding: 20px;
+}
+
+.no-info {
+  color: #64748b;
+  font-style: italic;
+}
+
+/* Sección de Trabajos Recomendados */
+.profile-jobs {
+  grid-column: span 2;
+}
+
+.view-all-link {
+  font-size: 0.85rem;
+  color: #5e17eb;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.profile-job-recommendations {
+  padding: 20px;
+}
+
+.job-matches-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.job-match-item {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  transition: all 0.2s ease;
+}
+
+.job-match-item:hover {
+  border-color: #5e17eb;
+  box-shadow: 0 4px 12px rgba(94, 23, 235, 0.1);
+}
+
+.job-match-header {
+  margin-bottom: 10px;
+}
+
+.job-match-header h4 {
+  margin: 0 0 4px 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.job-match-company {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.job-match-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.job-match-location, .job-match-aircraft {
+  font-size: 0.85rem;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.job-match-apply-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 8px;
+  background-color: #5e17eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.job-match-apply-btn:hover {
+  background-color: #4c11c9;
+}
+
+.no-jobs-message {
+  text-align: center;
+  padding: 20px;
+  color: #64748b;
+}
+
+.no-jobs-message p {
+  margin: 0 0 8px 0;
+}
+
+/* Sección de Vuelos Recientes */
+.profile-recent-flights {
+  padding: 20px;
+}
+
+.recent-flights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.recent-flight-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.recent-flight-item:hover {
+  background-color: #f1f5f9;
+}
+
+.recent-flight-date {
+  font-weight: 500;
+  font-size: 0.9rem;
+  width: 100px;
+}
+
+.recent-flight-details {
+  flex: 1;
+}
+
+.recent-flight-aircraft {
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+
+.recent-flight-route {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.recent-flight-duration {
+  font-weight: 500;
+  color: #5e17eb;
+}
+
+.no-flights-message {
+  text-align: center;
+  padding: 20px;
+  color: #64748b;
+}
+
+.add-flight-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #5e17eb;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Formularios de edición */
+.profile-edit-form {
+  padding: 20px;
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #334155;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #5e17eb;
+  box-shadow: 0 0 0 3px rgba(94, 23, 235, 0.15);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.form-cancel-btn {
+  padding: 10px 16px;
+  background-color: transparent;
+  color: #64748b;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.form-cancel-btn:hover {
+  background-color: #f1f5f9;
+}
+
+.form-submit-btn {
+  padding: 10px 16px;
+  background-color: #5e17eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.form-submit-btn:hover {
+  background-color: #4c11c9;
+}
+
+.form-submit-btn:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+/* Chips para habilitaciones */
+.ratings-form-container {
+  margin-bottom: 20px;
+}
+
+.ratings-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.rating-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #f1f5f9;
+  border-radius: 20px;
+  padding: 6px 10px 6px 16px;
+  font-size: 0.85rem;
+}
+
+.rating-chip button {
+  background-color: #e2e8f0;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.2s ease;
+}
+
+.rating-chip button:hover {
+  background-color: #cbd5e1;
+  color: #334155;
+}
+
+.add-rating-btn {
+  background: none;
+  border: 1px dashed #cbd5e1;
+  color: #5e17eb;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.add-rating-btn:hover {
+  background-color: #f8fafc;
+  border-color: #5e17eb;
+}
+
+.custom-rating-input,
+.custom-country-input {
+  margin-top: 8px;
+}
+
+/* Modal para agregar habilitación */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 20px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.modal-cancel-btn {
+  padding: 8px 16px;
+  background-color: transparent;
+  color: #64748b;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.modal-add-btn {
+  padding: 8px 16px;
+  background-color: #5e17eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.modal-add-btn:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+/* Componente de carga */
+.profile-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.profile-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f1f5f9;
+  border-top: 3px solid #5e17eb;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+  .profile-main-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .profile-jobs {
+    grid-column: auto;
+  }
+  
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .profile-personal .profile-card-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .profile-personal-info {
+    margin-left: 0;
+    margin-top: 12px;
+  }
+  
+  .profile-tags {
+    justify-content: center;
+  }
+  
+  .profile-position-info {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .position-location {
+    justify-content: center;
+  }
+}
