@@ -1,0 +1,184 @@
+.proposal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+  }
+  
+  .proposal-card {
+    background: linear-gradient(135deg, #fff1f1, #fffbfb);
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(244, 63, 94, 0.3), 0 0 100px rgba(244, 63, 94, 0.2);
+    padding: 48px;
+    text-align: center;
+    max-width: 90%;
+    width: 500px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .heart-container {
+    margin-bottom: 24px;
+  }
+  
+  .proposal-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #1f2937;
+    line-height: 1.3;
+  }
+  
+  .proposal-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 36px;
+  }
+  
+  .yes-button, .no-button, .continue-button {
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+  }
+  
+  .yes-button {
+    background: linear-gradient(135deg, #f43f5e, #ec4899);
+    color: white;
+    box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+    flex: 2;
+  }
+  
+  .no-button {
+    background: #f3f4f6;
+    color: #4b5563;
+    border: 1px solid #e5e7eb;
+    flex: 1;
+  }
+  
+  .continue-button {
+    background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+    color: white;
+    box-shadow: 0 4px 12px rgba(109, 40, 217, 0.3);
+    margin: 24px auto 0;
+  }
+  
+  .response-message {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .response-message p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #1f2937;
+    font-weight: 500;
+  }
+  
+  .yes-response {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .love-note {
+    font-style: italic;
+    color: #ec4899;
+    font-weight: 600;
+  }
+  
+  .gift-icon {
+    color: #ec4899;
+    filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.5));
+  }
+  
+  /* Corazones flotantes */
+  .floating-hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  .floating-heart {
+    position: absolute;
+    will-change: transform;
+    animation: floatHeart linear infinite;
+  }
+  
+  @keyframes floatHeart {
+    0% {
+      transform: translate(0, 100%) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate(0, -100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+  
+  /* Media queries para responsividad */
+  @media (max-width: 600px) {
+    .proposal-card {
+      padding: 30px 20px;
+    }
+    
+    .proposal-title {
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+    
+    .proposal-buttons {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+  
+  /* Tema oscuro */
+  [data-theme="dark"] .proposal-card {
+    background: linear-gradient(135deg, #3f1f2c, #2a1d30);
+    box-shadow: 0 20px 40px rgba(244, 63, 94, 0.3), 0 0 100px rgba(244, 63, 94, 0.2);
+  }
+  
+  [data-theme="dark"] .proposal-title {
+    color: #f9fafb;
+  }
+  
+  [data-theme="dark"] .no-button {
+    background: #1f2937;
+    color: #e5e7eb;
+    border: 1px solid #374151;
+  }
+  
+  [data-theme="dark"] .response-message p {
+    color: #f9fafb;
+  }
+  
+  [data-theme="dark"] .love-note {
+    color: #fb7185;
+  }

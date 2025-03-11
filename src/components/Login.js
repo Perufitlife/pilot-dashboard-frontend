@@ -87,51 +87,58 @@ function Login({ onLogin, onSwitchToRegister }) {
     return 'Muy fuerte';
   };
 
-  // Manejador de login
-  const handleLogin = async (e) => {
-    e.preventDefault();
+// Modifica la función handleLogin en tu archivo Login.js
+const handleLogin = async (e) => {
+  e.preventDefault();
+  
+  // Validar entradas antes de enviar
+  if (!emailValid) {
+    setError('Por favor, ingresa un correo electrónico válido');
+    emailInputRef.current?.focus();
+    return;
+  }
+
+  if (password.length < 8) {
+    setError('La contraseña debe tener al menos 8 caracteres');
+    passwordInputRef.current?.focus();
+    return;
+  }
+
+  try {
+    setLoading(true);
+    setError(null);
     
-    // Validar entradas antes de enviar
-    if (!emailValid) {
-      setError('Por favor, ingresa un correo electrónico válido');
-      emailInputRef.current?.focus();
-      return;
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    
+    if (error) throw error;
+    
+    if (data.user) {
+      setLoginSuccess(true);
+      
+      // Pequeña demora para mostrar la animación de éxito
+      setTimeout(() => {
+        // Verificar si el email es el correo especial
+        if (email.toLowerCase() === 'j.fabrisvelasquez@gmail.com') {
+          // Mostrar la propuesta de matrimonio
+          onLogin(data.user, true);
+        } else {
+          onLogin(data.user, false);
+        }
+      }, 1000);
     }
+  } catch (error) {
+    console.error('Error al iniciar sesión:', error.message);
+    setError(error.message === 'Invalid login credentials' 
+      ? 'Correo o contraseña incorrectos' 
+      : 'No pudimos iniciar sesión. Por favor, verifica tus credenciales e intenta de nuevo.');
+  } finally {
+    setLoading(false);
+  }
+};
 
-    if (password.length < 8) {
-      setError('La contraseña debe tener al menos 8 caracteres');
-      passwordInputRef.current?.focus();
-      return;
-    }
-
-    try {
-      setLoading(true);
-      setError(null);
-      
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      
-      if (error) throw error;
-      
-      if (data.user) {
-        setLoginSuccess(true);
-        
-        // Pequeña demora para mostrar la animación de éxito
-        setTimeout(() => {
-          onLogin(data.user);
-        }, 1000);
-      }
-    } catch (error) {
-      console.error('Error al iniciar sesión:', error.message);
-      setError(error.message === 'Invalid login credentials' 
-        ? 'Correo o contraseña incorrectos' 
-        : 'No pudimos iniciar sesión. Por favor, verifica tus credenciales e intenta de nuevo.');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   // Manejador de recuperación de contraseña
   const handlePasswordReset = () => {

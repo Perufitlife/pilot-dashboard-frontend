@@ -124,7 +124,7 @@ const DocumentManager = ({ user }) => {
         const { data, error } = await supabase
           .from('aviation_documents')
           .select('category, count')
-          .group('category');
+          .groupBy('category');
 
         if (error) throw error;
 

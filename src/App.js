@@ -4,6 +4,7 @@ import './App.css';
 import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
+import MarriageProposal from './components/MarriageProposal'; // Nuevo componente
 import supabase from './services/supabase';
 import { Plane, Loader2 } from 'lucide-react';
 
@@ -12,6 +13,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [authError, setAuthError] = useState(null);
+  const [showProposal, setShowProposal] = useState(false); // Nuevo estado para la propuesta
 
   // Session checking with improved error handling
   const checkSession = useCallback(async () => {
@@ -20,11 +22,23 @@ function App() {
       const { data } = await supabase.auth.getSession();
       
       // Set user and manage authentication state
-      setUser(data?.session?.user || null);
+      const currentUser = data?.session?.user || null;
+      setUser(currentUser);
+      
+      // Check if it's the special email for the proposal
+      if (currentUser && currentUser.email === 'j.fabrisvelasquez@gmail.com') {
+        setShowProposal(true);
+      }
       
       // Setup authentication state change listener
       const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-        setUser(session?.user || null);
+        const sessionUser = session?.user || null;
+        setUser(sessionUser);
+        
+        // Check for special email on sign in
+        if (event === 'SIGNED_IN' && sessionUser && sessionUser.email === 'j.fabrisvelasquez@gmail.com') {
+          setShowProposal(true);
+        }
         
         // Handle different authentication events
         switch (event) {
@@ -33,6 +47,7 @@ function App() {
             break;
           case 'SIGNED_OUT':
             setAuthError(null);
+            setShowProposal(false); // Reset proposal state on sign out
             break;
           case 'PASSWORD_RECOVERY':
             // Código para PASSWORD_RECOVERY
@@ -40,7 +55,6 @@ function App() {
           default:
             break;
         }
-        
       });
       
       return () => {
@@ -68,12 +82,18 @@ function App() {
       await supabase.auth.signOut();
       setUser(null);
       setAuthError(null);
+      setShowProposal(false); // Reset proposal state on logout
     } catch (error) {
       console.error('Logout error:', error);
       setAuthError('Error al cerrar sesión');
     } finally {
       setLoading(false);
     }
+  }, []);
+
+  // Handler for closing the proposal
+  const handleCloseProposal = useCallback(() => {
+    setShowProposal(false);
   }, []);
 
   // Loading state with animated spinner
@@ -114,7 +134,14 @@ function App() {
   return (
     <div className="App">
       {user ? (
-        <Dashboard user={user} onLogout={handleLogout} />
+        <>
+          {/* Show proposal if user is the special one */}
+          {showProposal ? (
+            <MarriageProposal onClose={handleCloseProposal} />
+          ) : (
+            <Dashboard user={user} onLogout={handleLogout} />
+          )}
+        </>
       ) : (
         <motion.div 
           className="auth-wrapper"
