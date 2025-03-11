@@ -1,0 +1,358 @@
+:root {
+  --primary: #3b82f6;
+  --secondary: #6366f1;
+  --background: #f4f7fa;
+  --text-dark: #1f2937;
+  --text-light: #4b5563;
+  --white: #ffffff;
+  --sidebar-width: 280px;
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-dark);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Contenedor principal del dashboard */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Overlay para móvil */
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Sidebar / Navegación lateral */
+.dashboard-sidebar {
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  padding: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* Header del sidebar */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 25px 20px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.brand-logo {
+  width: 48px;
+  height: 48px;
+  background: var(--white);
+  color: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.sidebar-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Botón para cerrar menú en móvil */
+.mobile-menu-close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  transition: background-color 0.2s ease;
+  display: none;
+}
+
+.mobile-menu-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Información de usuario */
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  margin: 10px 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+}
+
+.user-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.user-details {
+  overflow: hidden;
+}
+
+.user-details h3 {
+  font-size: 16px;
+  margin: 0 0 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-details p {
+  font-size: 13px;
+  margin: 0;
+  opacity: 0.9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Navegación principal */
+.sidebar-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px;
+}
+
+.sidebar-nav button {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: var(--white);
+  padding: 12px 16px;
+  border-radius: var(--border-radius);
+  margin-bottom: 5px;
+  text-align: left;
+  font-size: 15px;
+  opacity: 0.85;
+  transition: all 0.2s ease;
+}
+
+.sidebar-nav button svg {
+  margin-right: 12px;
+}
+
+.sidebar-nav button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 1;
+}
+
+.sidebar-nav button.active {
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 1;
+  font-weight: 500;
+}
+
+/* Footer del sidebar */
+.sidebar-footer {
+  padding: 20px 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+}
+
+.sidebar-footer button {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  border: 2px solid var(--white);
+  color: var(--white);
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.sidebar-footer button:hover {
+  background: var(--white);
+  color: var(--primary);
+}
+
+/* Contenido principal */
+.dashboard-content {
+  flex: 1;
+  background: var(--background);
+  padding: 30px;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+/* Header móvil (solo visible en pantallas pequeñas) */
+.mobile-header {
+  display: none;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.mobile-header h1 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.mobile-menu-toggle {
+  background: transparent;
+  border: none;
+  color: var(--text-dark);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.mobile-menu-toggle:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Diseño responsive */
+@media (max-width: 1024px) {
+  .dashboard-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    box-shadow: none;
+  }
+  
+  .dashboard-sidebar.open {
+    transform: translateX(0);
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .mobile-header {
+    display: flex;
+  }
+  
+  .mobile-menu-close {
+    display: flex;
+  }
+  
+  .dashboard-content {
+    padding: 20px;
+  }
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .dashboard-content {
+    padding: 25px;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .dashboard-content {
+    padding: 15px;
+  }
+  
+  .sidebar-user {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .user-avatar {
+    margin: 0 0 10px;
+  }
+  
+  .mobile-header h1 {
+    font-size: 18px;
+  }
+}
+
+/* Estilos para la barra de desplazamiento */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.dashboard-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Estilos para componentes de depuración */
+.debug-messages {
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #f0f0f0;
+  border-radius: 8px;
+  font-size: 12px;
+  border: 1px solid #ddd;
+}
+
+.debug-messages pre {
+  white-space: pre-wrap;
+  margin: 0;
+}
