@@ -167,7 +167,7 @@ function QueryBot({ userId }) {
   const abortControllerRef = useRef(null);
   
   const apiClient = useRef(axios.create({
-    baseURL: 'https://be99-2803-a3e0-1170-939-f490-5c0b-ac61-34c4.ngrok-free.app',
+    baseURL: window.location.origin,
     timeout: 30000,
   })).current;
 
